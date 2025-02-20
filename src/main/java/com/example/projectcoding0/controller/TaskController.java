@@ -3,9 +3,10 @@ package com.example.projectcoding0.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.projectcoding0.entity.Task;
-import com.example.projectcoding0.entity.User;
 import com.example.projectcoding0.mapper.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -17,6 +18,87 @@ public class TaskController {
     @Autowired
     private TaskMapper taskMapper;
 
+
+    // **删除任务**
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteTask(@RequestParam int taskId) {
+        int deletedRows = taskMapper.deleteTask(taskId);
+
+        if (deletedRows > 0) {
+            return ResponseEntity.ok("Task deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
+        }
+    }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateTask(@RequestBody Task updatedTask) {
+        if (updatedTask == null || updatedTask.getTaskId() == null) {
+            return ResponseEntity.badRequest().body("Invalid task data");
+        }
+
+        // Use MyBatis to update:
+        int rows = taskMapper.updateTask(updatedTask);
+
+        if (rows > 0) {
+            return ResponseEntity.ok("Task updated successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No rows updated");
+        }
+    }
+
+
+    // Rename Tag
+//    @PutMapping("/tag/rename")
+//    public ResponseEntity<String> renameTag(
+//            @RequestParam String oldTag,
+//            @RequestParam String newTag,
+//            @RequestParam int userId
+//    ) {
+//        if (oldTag == null || newTag == null || oldTag.isEmpty() || newTag.isEmpty()) {
+//            return ResponseEntity.badRequest().body("Invalid parameters");
+//        }
+//
+//        int updatedRows = taskMapper.renameTag(oldTag, newTag, userId);
+//        if (updatedRows > 0) {
+//            return ResponseEntity.ok("Tag renamed successfully");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tag not found for this user");
+//        }
+//    }
+
+    @PutMapping("/tag/rename")
+    public ResponseEntity<String> renameTag(
+            @RequestParam String oldTag,
+            @RequestParam String newTag,
+            @RequestParam int userId
+    ) {
+        if (oldTag == null || newTag == null || oldTag.isEmpty() || newTag.isEmpty()) {
+            return ResponseEntity.badRequest().body("Invalid parameters");
+        }
+
+        // ** 先检查 oldTag 是否存在**
+        int count = taskMapper.countTag(oldTag, userId);
+        if (count == 0) {
+            return ResponseEntity.ok("Tag not found for this user, but no error.");
+        }
+
+        // ** 更新 tag**
+        int updatedRows = taskMapper.renameTag(oldTag, newTag, userId);
+        return ResponseEntity.ok("Tag renamed successfully (tasks updated: " + updatedRows + ")");
+    }
+
+    // Delete Tag
+    @DeleteMapping("/tag/delete")
+    public ResponseEntity<String> deleteTag(
+            @RequestParam String taskTag,
+            @RequestParam int userId
+    ) {
+        int deletedRows = taskMapper.deleteTag(taskTag, userId);
+        // 如果没有任务被删，也不算错误
+        return ResponseEntity.ok("Tag deleted successfully (no tasks or tasks found).");
+    }
 
     // Query all tasks with their associated users
     @GetMapping("/users")

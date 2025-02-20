@@ -15,7 +15,8 @@ public class User {
     private String userName;
     @TableField("user_password")
     private String password;
-
+    @TableField("user_coins")
+    private float userCoins;
     // Associated task
     @TableField(exist = false)   // This field is not mapped to the database
     private List<Task> tasks;  // One user <-> Multiple tasks
@@ -46,6 +47,14 @@ public class User {
         this.password = password;
     }
 
+    public float getUserCoins() {
+        return userCoins;
+    }
+
+    public void setUserCoins(float userCoins) {
+        this.userCoins = userCoins;
+    }
+
     public List<Task> getTasks() {
         return tasks;
     }
@@ -55,13 +64,14 @@ public class User {
     }
 
 
-    // toString() method for easy debugging
     @Override
     public String toString() {
         return "User{" +
-                "id=" + userId +
-                ", username='" + userName + '\'' +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", userCoins=" + userCoins +
+                ", tasks=" + tasks +
                 '}';
     }
 }

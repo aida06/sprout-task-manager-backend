@@ -1,6 +1,4 @@
 package com.example.projectcoding0.entity;
-
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -13,13 +11,23 @@ public class Task {
     private Long taskId;
     @TableField("task_name")
     private String taskName;
+    @TableField("importance")
+    private Integer importance;
+    @TableField("urgency")
+    private Integer urgency;
+    @TableField("task_tag")
+    private String taskTag;
     @TableField("description")
     private String description;
-    @TableField("is_completed")
-    private boolean isCompleted;
+    @TableField("reward_coins")
+    private float rewardCoins;
+    @TableField("focus_time")
+    private Integer focusTime;
 
     @TableField("user_id")
-    private User user;  // Associate to User
+//    private User user;  // Associate to User
+    private Long userId;
+
 
     // Getters and Setters
     public Long getTaskId() {
@@ -38,6 +46,31 @@ public class Task {
         this.taskName = taskName;
     }
 
+
+    public Integer getImportance() {
+        return importance;
+    }
+
+    public void setImportance(Integer importance) {
+        this.importance = importance;
+    }
+
+    public Integer getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Integer urgency) {
+        this.urgency = urgency;
+    }
+
+    public String getTaskTag() {
+        return taskTag;
+    }
+
+    public void setTaskTag(String taskTag) {
+        this.taskTag = taskTag;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -46,30 +79,52 @@ public class Task {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
+
+    public float getRewardCoins() {
+        return rewardCoins;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setRewardCoins(float rewardCoins) {
+        this.rewardCoins = rewardCoins;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getFocusTime() {
+        return focusTime;
     }
 
-    public void setUserId(User user) {
-        this.user = user;
+    public void setFocusTime(Integer focusTime) {
+        this.focusTime = focusTime;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "taskID='" + taskId + '\'' +
+                "taskId=" + taskId +
                 ", taskName='" + taskName + '\'' +
+                ", importance=" + importance +
+                ", urgency=" + urgency +
+                ", taskTag='" + taskTag + '\'' +
                 ", description='" + description + '\'' +
-                ", isCompleted=" + isCompleted +
-                ", userID='" + user + '\'' +
+                ", rewardCoins=" + rewardCoins +
+                ", focusTime=" + focusTime +
+                ", userId=" + userId +
                 '}';
     }
 }
