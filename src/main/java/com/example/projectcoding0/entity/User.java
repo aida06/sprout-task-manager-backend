@@ -17,10 +17,12 @@ public class User {
     private String password;
     @TableField("user_coins")
     private float userCoins;
-    // Associated task
+
+    // Associated: 方便查询user的时候同时查询以下
     @TableField(exist = false)   // This field is not mapped to the database
     private List<Task> tasks;  // One user <-> Multiple tasks
-
+    @TableField(exist = false)
+    private List<UserBelongings> userBelongings;  // One user <-> Multiple userBelongings
 
     // Getters and Setters
     public Long getUserId() {
@@ -63,6 +65,14 @@ public class User {
         this.tasks = tasks;
     }
 
+
+    public List<UserBelongings> getUserBelongings() {
+        return userBelongings;
+    }
+
+    public void setUserBelongings(List<UserBelongings> userBelongings) {
+        this.userBelongings = userBelongings;
+    }
 
     @Override
     public String toString() {

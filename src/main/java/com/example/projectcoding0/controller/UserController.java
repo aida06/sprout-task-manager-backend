@@ -44,8 +44,6 @@ public class UserController {
         }
     }
 
-
-
     // 用户登录（直接匹配数据库密码）
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> request) {
@@ -97,9 +95,9 @@ public class UserController {
     }
 
     // Query all users and their tasks
-    @GetMapping("/tasks")
-    public List<User> getAllUsersWithTasks() {
-        List<User> list = userMapper.selectAllUsersWithTasks();  // 调用 UserMapper 的自定义查询方法
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+        List<User> list = userMapper.selectAllUsers();  // 调用 UserMapper 的自定义查询方法
         System.out.println(list);
         return list;
     }

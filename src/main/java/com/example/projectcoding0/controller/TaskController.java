@@ -48,7 +48,6 @@ public class TaskController {
         }
     }
 
-
     // Rename Tag
 //    @PutMapping("/tag/rename")
 //    public ResponseEntity<String> renameTag(
@@ -140,10 +139,8 @@ public class TaskController {
         // 3. 调用 MyBatis-Plus 提供的 selectList 方法执行查询
         List<Task> taskList = taskMapper.selectList(queryWrapper);
 
-        // 4. 打印结果以便调试（可选）
         System.out.println("Tasks for userID " + userId + ": " + taskList);
 
-        // 5. 返回查询结果
         return taskList;
     }
 
