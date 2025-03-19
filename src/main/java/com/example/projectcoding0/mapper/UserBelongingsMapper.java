@@ -10,7 +10,6 @@ import java.util.List;
 public interface UserBelongingsMapper extends BaseMapper<UserBelongings> {
 
 
-
     @Update("UPDATE user_belongings SET location_x = #{locationX}, location_y = #{locationY} WHERE belongings_id = #{belongingId}")
     void updateLocation(@Param("belongingId") Long belongingId, @Param("locationX") int locationX, @Param("locationY") int locationY);
 

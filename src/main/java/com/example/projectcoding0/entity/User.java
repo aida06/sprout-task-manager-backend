@@ -23,6 +23,8 @@ public class User {
     private List<Task> tasks;  // One user <-> Multiple tasks
     @TableField(exist = false)
     private List<UserBelongings> userBelongings;  // One user <-> Multiple userBelongings
+    @TableField(exist = false)
+    private List<FocusTimer> focusTimers;  // One user <-> focusTimers
 
     // Getters and Setters
     public Long getUserId() {
@@ -74,6 +76,14 @@ public class User {
         this.userBelongings = userBelongings;
     }
 
+    public List<FocusTimer> getFocusTimers() {
+        return focusTimers;
+    }
+
+    public void setFocusTimers(List<FocusTimer> focusTimers) {
+        this.focusTimers = focusTimers;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -82,6 +92,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", userCoins=" + userCoins +
                 ", tasks=" + tasks +
+                ", userBelongings=" + userBelongings +
+                ", focusTimers=" + focusTimers +
                 '}';
     }
 }

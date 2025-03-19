@@ -58,6 +58,10 @@ public interface UserMapper extends BaseMapper<User> {
             @Result(column = "user_id", property = "userBelongings",
                     javaType = List.class,
                     many = @Many(select = "com.example.projectcoding0.mapper.UserBelongingsMapper.selectByUid")
+            ),
+            @Result(column = "user_id", property = "focusTimers",
+                    javaType = List.class,
+                    many = @Many(select = "com.example.projectcoding0.mapper.FocusTimerMapper.selectByUid")
             )
     })
     List<User> selectAllUsers();
