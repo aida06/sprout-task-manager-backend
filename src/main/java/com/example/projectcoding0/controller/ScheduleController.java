@@ -14,6 +14,16 @@ public class ScheduleController {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
+    @DeleteMapping("/deleteReminder/{id}")
+    public String deleteReminder(@PathVariable Long id) {
+        int rows = scheduleMapper.deleteById(id);
+        if (rows > 0) {
+            return "Schedule deleted successfully!";
+        } else {
+            return "No schedule record found or delete failed!";
+        }
+    }
+
     @PostMapping("/updateReminder")
     public String updateReminder(@RequestBody Schedule schedule) {
         // MyBatis-Plus 根据主键（scheduleId）更新

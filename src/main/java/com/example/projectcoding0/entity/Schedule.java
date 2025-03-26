@@ -1,12 +1,10 @@
 package com.example.projectcoding0.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 
 @TableName("schedule")
@@ -18,15 +16,17 @@ public class Schedule {
     @TableField("title")
     private String title;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX", timezone = "UTC")
     @TableField("start_time")
-    private LocalDateTime startTime;
+    private OffsetDateTime startTime;
+//    private LocalDateTime startTime;
 
     @TableField("duration")
     private int duration;
 
-    @TableField("remind_before")
-    private int remindBefore;
+    @TableField(value = "remind_before", updateStrategy = FieldStrategy.IGNORED)
+    private Integer remindBefore;
 
     @TableField("user_id")
     private Long userId;
@@ -47,11 +47,11 @@ public class Schedule {
         this.title = title;
     }
 
-    public LocalDateTime getStartTime() {
+    public OffsetDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(OffsetDateTime startTime) {
         this.startTime = startTime;
     }
 
@@ -63,11 +63,11 @@ public class Schedule {
         this.duration = duration;
     }
 
-    public int getRemindBefore() {
+    public Integer getRemindBefore() {
         return remindBefore;
     }
 
-    public void setRemindBefore(int remindBefore) {
+    public void setRemindBefore(Integer remindBefore) {
         this.remindBefore = remindBefore;
     }
 
