@@ -14,8 +14,8 @@ public class StoreItem {
     private String itemName;
     @TableField("item_type")
     private String itemType;
-    @TableField("item_prize")
-    private float itemPrize;
+    @TableField("item_price")
+    private float itemPrice;
     @TableField("item_sprite")
     private String itemSprite;
     @TableField("frame_index")
@@ -47,12 +47,12 @@ public class StoreItem {
         this.itemType = itemType;
     }
 
-    public float getItemPrize() {
-        return itemPrize;
+    public float getItemPrice() {
+        return itemPrice;
     }
 
-    public void setItemPrize(float itemPrize) {
-        this.itemPrize = itemPrize;
+    public void setItemPrice(float itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public String getItemSprite() {
@@ -77,7 +77,7 @@ public class StoreItem {
                 "itemId=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemType='" + itemType + '\'' +
-                ", itemPrize=" + itemPrize +
+                ", itemPrice=" + itemPrice +
                 ", itemSprite='" + itemSprite + '\'' +
                 ", frameIndex=" + frameIndex +
                 '}';

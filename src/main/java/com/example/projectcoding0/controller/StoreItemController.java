@@ -32,17 +32,17 @@ public class StoreItemController {
     }
 
 
-    @GetMapping("/itemPrizeMap")
-    public Map<Long, Float> getItemPrizeMap() {
-        // 查询出只包含 item_id 和 item_prize 的 StoreItem列表
-        List<StoreItem> itemList = storeItemMapper.selectItemPrizeMap();
+    @GetMapping("/itemPriceMap")
+    public Map<Long, Float> getItemPriceMap() {
+        // 查询出只包含 item_id 和 item_price 的 StoreItem列表
+        List<StoreItem> itemList = storeItemMapper.selectItemPriceMap();
 
-        // 封装成 Map<item_id, item_prize>
-        Map<Long, Float> itemPrizeMap = new HashMap<>();
+        // 封装成 Map<item_id, item_price>
+        Map<Long, Float> itemPriceMap = new HashMap<>();
         for (StoreItem item : itemList) {
-            itemPrizeMap.put(item.getItemId(), item.getItemPrize());
+            itemPriceMap.put(item.getItemId(), item.getItemPrice());
         }
-        return itemPrizeMap;
+        return itemPriceMap;
     }
 
 

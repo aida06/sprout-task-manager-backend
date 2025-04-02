@@ -19,12 +19,12 @@ public interface StoreItemMapper extends BaseMapper<StoreItem> {
     List<StoreItem> selectFrameIndexMap();
 
 
-    @Select("SELECT item_id, item_prize FROM store_item")
+    @Select("SELECT item_id, item_price FROM store_item")
     @Results({
             @Result(column = "item_id", property = "itemId"),
-            @Result(column = "item_prize", property = "itemPrize")
+            @Result(column = "item_price", property = "itemPrice")
     })
-    List<StoreItem> selectItemPrizeMap();
+    List<StoreItem> selectItemPriceMap();
 
 
     @Select("SELECT item_id, item_sprite FROM store_item")
@@ -40,7 +40,7 @@ public interface StoreItemMapper extends BaseMapper<StoreItem> {
             @Result(column = "item_id", property = "itemId"),
             @Result(column = "item_name", property = "itemName"),
             @Result(column = "item_type", property = "itemType"),
-            @Result(column = "item_prize", property = "itemPrize"),
+            @Result(column = "item_price", property = "itemPrice"),
             @Result(column = "item_sprite", property = "itemSprite"),
             @Result(column = "frame_index", property = "frameIndex")
     })
