@@ -24,7 +24,7 @@ public class ScheduleController {
         }
     }
 
-    @PostMapping("/updateReminder")
+    @PutMapping("/updateReminder")
     public String updateReminder(@RequestBody Schedule schedule) {
         // MyBatis-Plus 根据主键（scheduleId）更新
         int rows = scheduleMapper.updateById(schedule);
